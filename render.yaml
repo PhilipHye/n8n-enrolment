@@ -1,1 +1,37 @@
+services:
+  - type: web
+    name: n8n
+    env: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./docker/images/n8n/Dockerfile
+
+    envVars:
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "true"
+      - key: N8N_BASIC_AUTH_USER
+        value: "admin"
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: "your-secure-password"
+      - key: GENERIC_TIMEZONE
+        value: Africa/Lagos
+      - key: WEBHOOK_TUNNEL_URL
+        value: ""
+      - key: N8N_HOST
+        value: n8n.onrender.com
+      - key: N8N_PORT
+        value: "5678"
+      - key: N8N_PROTOCOL
+        value: "https"
+      - key: N8N_LOG_LEVEL
+        value: info
+      - key: NODE_ENV
+        value: production
+      - key: EXECUTIONS_MODE
+        value: own
+
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 1
 
